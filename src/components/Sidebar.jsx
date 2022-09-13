@@ -5,8 +5,8 @@ import { IoIosArrowForward } from 'react-icons/io';
 
 import Logo from '../assets/logo.png';
 
-const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize';
-const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black transition-all duration-200 ease-in-out capitalize';
+const isNotActiveStyle = 'flex items-center px-8 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize';
+const isActiveStyle = 'flex items-center px-8 gap-3 border-r-4 border-secondary text-secondary transition-all duration-200 ease-in-out capitalize';
 
 const categories = [
     { name: 'Animals' },
@@ -27,11 +27,11 @@ export const Sidebar = ({ user, closeToggle }) => {
     };
 
     return (
-        <div className='flex flex-col justify-between bg-white h-full overflow-y-scroll min-w-40 hide-scrollbar'>
+        <div className='flex flex-col justify-between bg-white h-full overflow-y-scroll  min-w-40 hide-scrollbar'>
             <div className='flex flex-col'>
                 <Link
                     to='/'
-                    className='flex px-5 gap-2 my-6 pt-1 w-[190px] items-center'
+                    className='flex px-5 gap-2 my-6 pt-1 w-[200px] items-center'
                     onClick={handleCloseSidebar}
                 >
                     <img src={Logo} alt="logo" className='w-full' />
@@ -45,7 +45,7 @@ export const Sidebar = ({ user, closeToggle }) => {
                         <RiHomeFill />
                         Home
                     </NavLink>
-                    <h3 className='px-5 pt-2 2xl:text-xl'>Discover Categories</h3>
+                    <h3 className='px-8 pt-8 2xl:text-xl'>Discover Categories</h3>
                     {
                         categories.slice(0, categories.length - 1).map((category) => (
                             <NavLink

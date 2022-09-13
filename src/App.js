@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="bg-base-200">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/*" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<SingUp />} />
