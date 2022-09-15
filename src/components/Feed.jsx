@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { client } from '../client';
 import { feedQuery, searchQuery } from '../utils/data';
-import { MasonaryLayout } from './MasonaryLayout';
+import { MasonryLayout } from './MasonryLayout';
 import { Spinner } from './Spinner';
 
 export const Feed = () => {
@@ -35,7 +35,7 @@ export const Feed = () => {
 
     return (
         <div>
-            {pins && <MasonaryLayout pins={pins} />}
+            {pins && <MasonryLayout pins={pins} />}
         </div>
     );
 };
