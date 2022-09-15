@@ -29,7 +29,7 @@ export const Feed = () => {
         }
     }, [categoryId]);
 
-    if (isLoading || categoryId) {
+    if (isLoading) {
         return <Spinner message="We are adding new images to your feed!" />
     }
 

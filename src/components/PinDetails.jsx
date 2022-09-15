@@ -71,8 +71,8 @@ export const PinDetails = ({ user }) => {
 
     return (
         <>
-            <div className="px-2 flex xl:flex-row flex-col m-auto bg-white" style={{ maxWidth: '1500px', borderRadius: '32px' }}>
-                <div className="flex justify-center items-center md:items-start flex-initial">
+            <div className="px-2 flex lg:flex-row w-full py-5 lg:gap-10 gap-6 flex-col m-auto" style={{ maxWidth: '1500px', borderRadius: '32px' }}>
+                <div className="flex justify-center items-center md:items-start flex-initial w-full lg:w-1/2">
                     <img
                         className="rounded-lg"
                         src={pinDetail?.image && urlFor(pinDetail?.image).url()}
@@ -80,9 +80,9 @@ export const PinDetails = ({ user }) => {
                     />
                 </div>
 
-                <div className="w-full py-5 flex-1 xl:min-w-620">
+                <div className="flex-1 w-full">
                     <div className="flex items-center justify-between">
-                        <div className="flex gap-2 items-center">
+                        <div className="flex items-center">
                             <a
                                 href={`${pinDetail?.image?.asset?.url}?dl=`}
                                 download
@@ -93,24 +93,24 @@ export const PinDetails = ({ user }) => {
                             </a>
                         </div>
                         <a className='bg-secondary text-white rounded-full px-3 py-1 opacity-80 hover:opacity-100 hover:shadow-md' href={pinDetail?.destination} target="_blank" rel="noreferrer">
-                            {pinDetail?.destination?.slice(0, 20)}
+                            {pinDetail?.destination?.slice(0, 25)}
                         </a>
                     </div>
                     <div>
-                        <h1 className="text-4xl font-bold break-words mt-3">
+                        <h1 className="text-3xl font-bold break-words mt-8">
                             {pinDetail?.title}
                         </h1>
                         <p className="mt-3">{pinDetail?.about}</p>
                     </div>
-                    <Link to={`/user-profile/${pinDetail?.postedBy?._id}`} className="flex gap-2 mt-5 items-center bg-white rounded-lg ">
+                    <Link to={`/user-profile/${pinDetail?.postedBy?._id}`} className="flex gap-2 mt-5 items-center rounded-lg ">
                         <img src={pinDetail?.postedBy?.image} className="w-10 h-10 rounded-full" alt="user-profile" />
                         <p className="font-bold">{pinDetail?.postedBy?.userName}</p>
                     </Link>
 
-                    <h2 className="mt-5 text-xl">Comments</h2>
+                    <h2 className="mt-10 text-xl">Comments</h2>
                     <div className="max-h-370 overflow-y-auto">
                         {pinDetail?.comments?.map((comment, i) => (
-                            <div className="flex gap-2 mt-5 items-center bg-white rounded-lg" key={i}>
+                            <div className="flex gap-3 mt-5 items-center" key={i}>
                                 <img
                                     src={comment?.postedBy?.image}
                                     className="w-9 h-9 rounded-md cursor-pointer"
@@ -150,9 +150,7 @@ export const PinDetails = ({ user }) => {
                     <h2 className='text-center font-bold text-2xl mt-8 mb-4'>More like this</h2>
                     <MasonryLayout pins={pins} />
                 </>
-            ) : (
-                <Spinner message="Loading more pins.." />
-            )}
+            ) : ''}
         </>
     )
 }

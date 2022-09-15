@@ -164,7 +164,7 @@ export const CreatePin = ({ user }) => {
                                 className="outline-none w-full text-base border-b-2 border-gray-200 p-2  rounded-md cursor-pointer bg-red-200"
                             >
                                 <option value="other" className='bg-white'>Select Category</option>
-                                {categories.map((category) => (
+                                {categories?.map((category) => (
                                     <option className='bg-white my-3 text-base border-0 outline-none capitalize text-black' value={category?.name}>{category?.name}</option>
                                 ))}
                             </select>
