@@ -7,7 +7,7 @@ export const Navbar = ({ searchTerm, setSearchTerm, user }) => {
     const navigate = useNavigate();
 
     return (
-        <div className="navbar gap-2 md:gap-5 w-full mt-5 pb-7 px-2">
+        <div className="navbar gap-2 md:gap-5 w-full mt-5 pb-3 px-2">
             <div className="flex-1">
                 <div className='flex justify-center items-center w-full px-3 py-1 rounded-full bg-base-100 border-none outline-none'>
                     <IoMdSearch fontSize={21} className="ml-3" />

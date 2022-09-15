@@ -3,7 +3,7 @@ import { InfinitySpin } from 'react-loader-spinner';
 
 export const Spinner = ({ message }) => {
     return (
-        <div className='flex flex-col justify-center items-center mt-40'>
+        <div className='flex flex-col justify-center items-center'>
             <InfinitySpin
                 type="circle"
                 color="#FF4F5A"

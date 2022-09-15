@@ -13,16 +13,15 @@ export const Feed = () => {
 
     useEffect(() => {
         setIsLoading(true);
-
         if (categoryId) {
             const query = searchQuery(categoryId);
-            client.fetch(query)
+            client?.fetch(query)
                 .then((data) => {
                     setPins(data);
                     setIsLoading(false);
                 })
         } else {
-            client.fetch(feedQuery)
+            client?.fetch(feedQuery)
                 .then((data) => {
                     setPins(data);
                     setIsLoading(false);
@@ -30,12 +29,12 @@ export const Feed = () => {
         }
     }, [categoryId]);
 
-    if (isLoading) {
+    if (isLoading || categoryId) {
         return <Spinner message="We are adding new images to your feed!" />
     }
 
     return (
-        <div className="px-2">
+        <div>
             {pins && <MasonaryLayout pins={pins} />}
         </div>
     );
