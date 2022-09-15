@@ -33,6 +33,10 @@ export const Feed = () => {
         return <Spinner message="We are adding new images to your feed!" />
     }
 
+    if (!pins?.length) {
+        return <h2 className='text-2xl text-center mt-20'>No image available for this category</h2>
+    }
+
     return (
         <div>
             {pins && <MasonryLayout pins={pins} />}
