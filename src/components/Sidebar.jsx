@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { RiHomeFill } from 'react-icons/ri';
-import { IoIosArrowForward } from 'react-icons/io';
 
 import Logo from '../assets/logo.png';
 import { categories } from '../utils/data';
@@ -46,7 +45,7 @@ export const Sidebar = ({ user, closeToggle }) => {
                                 onClick={handleCloseSidebar}
                                 key={category?.name}
                             >
-                                <img src={category?.image} className="w-8 h-8 rounded-full shadow-sm" />
+                                <img src={category?.image} className="w-8 h-8 rounded-full shadow-sm" alt="category-icon" />
                                 {category?.name}
                             </NavLink>
                         ))

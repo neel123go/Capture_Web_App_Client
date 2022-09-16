@@ -11,6 +11,7 @@ import Logo from '../assets/logo.png';
 import { Pins } from './Pins';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../Firebase.init';
+import RequireAuth from '../components/RequireAuth';
 
 export const Home = () => {
     const [user] = useAuthState(auth);
@@ -61,7 +62,11 @@ export const Home = () => {
 
             <div className='pb-2 flex-1 h-screen overflow-y-scroll' ref={scrollRef}>
                 <Routes>
-                    <Route path='/user-profile/:userId' element={<UserProfile />} />
+                    <Route path='/user-profile/:userId' element={
+                        <RequireAuth>
+                            <UserProfile />
+                        </RequireAuth>
+                    } />
                     <Route path='/*' element={<Pins user={sanityUser && sanityUser} />} />
                 </Routes>
             </div>

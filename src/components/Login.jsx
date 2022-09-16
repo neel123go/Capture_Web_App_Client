@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import auth from '../Firebase.init';
 import { useSignInWithEmailAndPassword, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
@@ -20,10 +20,13 @@ export const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+    const emailRef = useRef('');
 
     const onSubmit = async (data) => {
         await signInWithEmailAndPassword(data?.email, data?.password);
     };
+
+    console.log(emailRef?.current?.value)
 
     // Navigate user
     useEffect(() => {
@@ -69,6 +72,7 @@ export const Login = () => {
                                 type="text"
                                 placeholder="example@your.com"
                                 id="email"
+                                ref={emailRef}
                                 {...register("email", {
                                     required: {
                                         value: true,

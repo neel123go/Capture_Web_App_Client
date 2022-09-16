@@ -6,6 +6,7 @@ import { PinDetails } from '../components/PinDetails';
 import { CreatePin } from '../components/CreatePin';
 import { Search } from '../components/Search';
 import { Route, Routes } from 'react-router-dom';
+import RequireAuth from '../components/RequireAuth';
 
 export const Pins = ({ user }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -19,8 +20,16 @@ export const Pins = ({ user }) => {
                 <Routes>
                     <Route path='/' element={<Feed />} />
                     <Route path='/category/:categoryId' element={<Feed />} />
-                    <Route path='/pin-details/:pinId' element={<PinDetails user={user} />} />
-                    <Route path='/create-pin' element={<CreatePin user={user} />} />
+                    <Route path='/pin-details/:pinId' element={
+                        <RequireAuth>
+                            <PinDetails user={user} />
+                        </RequireAuth>
+                    } />
+                    <Route path='/create-pin' element={
+                        <RequireAuth>
+                            <CreatePin user={user} />
+                        </RequireAuth>
+                    } />
                     <Route path='/search' element={<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />} />
                 </Routes>
             </div>
