@@ -83,7 +83,7 @@ export const CreatePin = ({ user }) => {
             <div className='flex lg:flex-row flex-col justify-center items-center lg:p-5 w-full lg:gap-0 gap-5'>
                 <div className='bg-base-100 p-3 flex flex-0.7 w-full lg:w-1/2'>
                     <div className='flex justify-center items-center flex-col border-2 border-dotted border-gray-500 p-3 w-full h-80 md:h-[420px]'>
-                        {loading && <button class="pt-20 font-bold text-secondary">Loading..</button>}
+                        {loading && <button className="pt-20 font-bold text-secondary">Loading..</button>}
                         {wrongImageType && <p>Wrong image type</p>}
                         {
                             !imageAsset ? (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineLogout } from 'react-icons/ai';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { userCreatedPinsQuery, userQuery, userSavedPinsQuery } from '../utils/data';
 import { client } from '../client';
@@ -68,12 +68,12 @@ export const UserProfile = () => {
                         />
                         <img
                             className="rounded-full w-26 h-26 md:w-32 md:h-32 -mt-10 shadow-xl object-cover"
-                            src={user?.image}
+                            src={user?.image || firebaseUser?.photoURL}
                             alt="user-pic"
                         />
                     </div>
                     <h1 className="font-bold text-3xl text-center mt-3">
-                        {user?.userName}
+                        {user?.userName || firebaseUser?.displayName}
                     </h1>
 
                     <div className="absolute top-0 z-1 right-0 p-2">

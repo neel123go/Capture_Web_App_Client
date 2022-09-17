@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { client, urlFor } from '../client';
 import { v4 as uuidv4 } from 'uuid';
 import { MdDownloadForOffline } from 'react-icons/md';
-import { AiTwotoneDelete } from 'react-icons/ai';
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -15,39 +14,24 @@ export const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
     const [savingPost, setSavingPost] = useState(false);
     const navigate = useNavigate();
 
-    const alreadySaved = !!(save?.filter((item) => item?.postedBy?._id === user?.uid))?.length;
-
-    // 1, [2,3,1] -> [1].length -> 1 -> !1 -> false -> !false -> true
-    // 4, [2,3,1] -> [].length -> 0 -> !0 -> true -> !true -> false
-
     const savePin = (id) => {
-        if (!alreadySaved) {
-            setSavingPost(true);
+        setSavingPost(true);
 
-            client
-                .patch(id)
-                .setIfMissing({ save: [] })
-                .insert('after', 'save[-1]', [{
-                    _key: uuidv4(),
-                    userId: user?.uid,
-                    postedBy: {
-                        _type: 'postedBy',
-                        _ref: user?.uid
-                    }
-                }])
-                .commit()
-                .then(() => {
-                    window.location.reload();
-                    setSavingPost(false);
-                })
-        }
-    };
-
-    const deletePin = (id) => {
         client
-            .delete(id)
+            .patch(id)
+            .setIfMissing({ save: [] })
+            .insert('after', 'save[-1]', [{
+                _key: uuidv4(),
+                userId: user?.uid,
+                postedBy: {
+                    _type: 'postedBy',
+                    _ref: user?.uid
+                }
+            }])
+            .commit()
             .then(() => {
                 window.location.reload();
+                setSavingPost(false);
             });
     };
 
@@ -76,18 +60,14 @@ export const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                                     <MdDownloadForOffline fontSize={23} />
                                 </a>
                             </div>
-                            {alreadySaved ? (
-                                <button type='button' className='bg-red-500 rounded-full text-white font-bold px-4 py-1 opacity-80 hover:opacity-100 mx-1'>Saved</button>
-                            ) : (
-                                <button
-                                    type='button'
-                                    className='bg-red-500 rounded-full text-white font-bold px-4 py-1 opacity-80 hover:opacity-100 mx-1'
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        savePin(_id);
-                                    }}
-                                >{savingPost ? 'Saving..' : 'Save'}</button>
-                            )}
+                            <button
+                                type='button'
+                                className='bg-red-500 rounded-full text-white font-bold px-4 py-1 opacity-80 hover:opacity-100 mx-1'
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    savePin(_id);
+                                }}
+                            >{savingPost ? 'Saving..' : 'Save'}</button>
                         </div>
 
                         <div className='flex justify-between items-center gap-2 w-full'>
@@ -102,20 +82,6 @@ export const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                                     <p className='text-sm'>{destination.slice(0, 10) + '..'}</p>
                                 </a>
                             )}
-                            {
-                                postedBy?._id === user?.uid && (
-                                    <button
-                                        type='button'
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            deletePin(_id);
-                                        }}
-                                        className='text-red-500 rounded-full bg-white font-bold w-9 h-9 flex justify-center items-center opacity-80 hover:opacity-100 mx-1 mt-[-5px]'
-                                    >
-                                        <AiTwotoneDelete fontSize={20} />
-                                    </button>
-                                )
-                            }
                         </div>
                     </div>
                 )}
