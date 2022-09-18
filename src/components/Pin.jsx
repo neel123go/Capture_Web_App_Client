@@ -60,14 +60,14 @@ export const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                                     <MdDownloadForOffline fontSize={23} />
                                 </a>
                             </div>
-                            <button
+                            {user && <button
                                 type='button'
                                 className='bg-red-500 rounded-full text-white font-bold px-4 py-1 opacity-80 hover:opacity-100 mx-1'
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     savePin(_id);
                                 }}
-                            >{savingPost ? 'Saving..' : 'Save'}</button>
+                            >{savingPost ? 'Saving..' : 'Save'}</button>}
                         </div>
 
                         <div className='flex justify-between items-center gap-2 w-full'>
